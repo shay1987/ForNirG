@@ -1,0 +1,19 @@
+version: "3"
+services:
+  jenkins:
+    build: 
+      context: .
+    container_name: jenkins
+    env_file:
+      - .env
+    ports:
+      - 8880:8080
+      - 50000:50000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins_home:/var/jenkins_home
+      - ./casc.yml:/var/jenkins_casc.yml
+
+volumes:
+  jenkins_casc:
+    external: true
